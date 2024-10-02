@@ -8,7 +8,7 @@ const val API_KEY = "46313356-f9e1aa5f03874f33e58e28732"
 interface ApiService {
 
     @GET("videos/")
-    fun getNowPlayingMovies(
+    fun getVideos(
         @Query("key") apiKey: String = API_KEY,
         @Query("page") page: Int,
         @Query("per_page") perPage: Int,
