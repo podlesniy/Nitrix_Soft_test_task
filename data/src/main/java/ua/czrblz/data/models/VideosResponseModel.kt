@@ -1,10 +1,11 @@
-package ua.czrblz.nitrix_soft_test_task.api.models
+package ua.czrblz.data.models
 
-data class MoviesModel(
+data class VideosResponseModel(
     val hits: List<Video>
 )
 
 data class Video(
+    val id: Int,
     val tags: String,
     val duration: Int,
     val videos: VideoFormats,
