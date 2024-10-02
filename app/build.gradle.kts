@@ -78,4 +78,8 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.androidx.media3.exoplayer)
     implementation(libs.androidx.media3.ui)
+
+    implementation (project(":network"))
+    implementation (project(":domain"))
+    implementation (project(":data"))
 }

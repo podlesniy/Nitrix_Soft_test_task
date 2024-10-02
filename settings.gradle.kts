@@ -21,4 +21,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "Nitrix_Soft_test_task"
 include(":app")
- 
+include(":data")
+include(":domain")
+include(":network")
