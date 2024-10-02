@@ -14,6 +14,6 @@ interface VideosDao {
     suspend fun insertAll(video: List<VideoDBModel>)
 
     @Query("SELECT * FROM VideoDBModel")
-    suspend fun getAllVideo(): Flow<List<VideoDBModel>>
+    fun getAllVideo(): Flow<List<VideoDBModel>>
 
 }
