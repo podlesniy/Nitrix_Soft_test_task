@@ -12,6 +12,6 @@ interface ApiService {
     suspend fun getVideos(
         @Query("key") apiKey: String = API_KEY,
         @Query("page") page: Int,
-        @Query("per_page") perPage: Int,
+        @Query("per_page") perPage: Int = 10,
     ): Response<VideosResponseModel>
 }
