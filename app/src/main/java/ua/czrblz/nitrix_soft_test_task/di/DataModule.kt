@@ -1,0 +1,22 @@
+package ua.czrblz.nitrix_soft_test_task.di
+
+import android.content.Context
+import androidx.room.Room
+import org.koin.dsl.module
+import ua.czrblz.data.api.ApiService
+import ua.czrblz.data.db.VideosDatabase
+import ua.czrblz.network.NetworkAdapter
+
+val dataModule = module {
+
+    single<VideosDatabase> {
+        Room.databaseBuilder(
+            get<Context>(),
+            VideosDatabase::class.java, "video_database"
+        ).build()
+    }
+
+    single<ApiService> {
+        NetworkAdapter().retrofit.create(ApiService::class.java)
+    }
+}
