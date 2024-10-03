@@ -5,9 +5,25 @@ import androidx.room.Room
 import org.koin.dsl.module
 import ua.czrblz.data.api.ApiService
 import ua.czrblz.data.db.VideosDatabase
+import ua.czrblz.data.repository.DatabaseRepositoryImpl
+import ua.czrblz.data.repository.VideoRepositoryImpl
+import ua.czrblz.domain.repository.DatabaseRepository
+import ua.czrblz.domain.repository.VideoRepository
 import ua.czrblz.network.NetworkAdapter
 
 val dataModule = module {
+
+    single<VideoRepository> {
+        VideoRepositoryImpl(
+            get()
+        )
+    }
+
+    single<DatabaseRepository> {
+        DatabaseRepositoryImpl(
+            get()
+        )
+    }
 
     single<VideosDatabase> {
         Room.databaseBuilder(

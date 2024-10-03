@@ -1,4 +1,9 @@
 package ua.czrblz.domain.usecase
 
-class SaveVideosInfoToDBUseCase {
+import ua.czrblz.domain.repository.DatabaseRepository
+
+class SaveVideosInfoToDBUseCase(
+    private val databaseRepository: DatabaseRepository
+) {
+
 }
