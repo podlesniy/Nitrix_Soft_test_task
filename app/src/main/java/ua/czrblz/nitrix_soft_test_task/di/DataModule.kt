@@ -5,6 +5,8 @@ import androidx.room.Room
 import org.koin.dsl.module
 import ua.czrblz.data.api.ApiService
 import ua.czrblz.data.db.VideosDatabase
+import ua.czrblz.data.mappers.DatabaseMappers
+import ua.czrblz.data.mappers.VideoMappers
 import ua.czrblz.data.repository.DatabaseRepositoryImpl
 import ua.czrblz.data.repository.VideoRepositoryImpl
 import ua.czrblz.domain.repository.DatabaseRepository
@@ -15,13 +17,13 @@ val dataModule = module {
 
     single<VideoRepository> {
         VideoRepositoryImpl(
-            get()
+            get(), get()
         )
     }
 
     single<DatabaseRepository> {
         DatabaseRepositoryImpl(
-            get()
+            get(), get()
         )
     }
 
@@ -34,5 +36,13 @@ val dataModule = module {
 
     single<ApiService> {
         NetworkAdapter().retrofit.create(ApiService::class.java)
+    }
+
+    single<VideoMappers> {
+        VideoMappers()
+    }
+
+    single<DatabaseMappers> {
+        DatabaseMappers()
     }
 }
