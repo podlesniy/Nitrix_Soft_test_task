@@ -2,11 +2,13 @@ package ua.czrblz.nitrix_soft_test_task
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import ua.czrblz.domain.model.VideoModel
 import ua.czrblz.domain.usecase.GetVideosFromDBUseCase
 import ua.czrblz.domain.usecase.GetVideosFromServerUseCase
@@ -30,22 +32,24 @@ class MainViewModel(
     val errorMessage: StateFlow<String?> = _errorMessage.asStateFlow()
 
     init {
-        viewModelScope.launch {
-            getVideosFromServerUseCase()
-                .onSuccess { videoList ->
-                    saveVideosInfoToDBUseCase(videoList)
-                }
-                .onFailure { throwable ->
-                    _errorMessage.value = throwable.message
-                    _errorMessage.value = null
-                }
-        }
-
+        getVideos()
         viewModelScope.launch {
             getVideosFromDBUseCase().collectLatest {
                 _data.value =  it
                 _urls.value = getVideosUrlUseCase(it)
             }
         }
+    }
+
+    fun getVideos() = viewModelScope.launch {
+        getVideosFromServerUseCase()
+            .onSuccess { videoList ->
+                saveVideosInfoToDBUseCase(videoList)
+            }
+            .onFailure { throwable ->
+                _errorMessage.value = throwable.message
+                delay(100)
+                _errorMessage.value = null
+            }
     }
 }

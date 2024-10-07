@@ -2,4 +2,7 @@
     <string name="app_name">Nitrix_Soft_test_task</string>
     <string name="duration">Duration:</string>
     <string name="duration_second">%ss</string>
+    <string name="server_error">Something went wrong while contacting the server. Please try again later.</string>
+    <string name="video_error">Something went wrong while trying to play the video. Please try again later.</string>
+    <string name="empty_view">It\'s empty here for now.</string>
 </resources>
