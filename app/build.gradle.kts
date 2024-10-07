@@ -81,6 +81,7 @@ dependencies {
     implementation(libs.androidx.media3.ui)
     implementation(libs.room.runtime)
     implementation(libs.androidx.room.ktx)
+    implementation(libs.coil.kt.coil.compose)
     ksp(libs.androidx.room.compiler)
 
     implementation (project(":network"))

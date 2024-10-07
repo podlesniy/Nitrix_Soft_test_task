@@ -20,4 +20,12 @@ class DatabaseRepositoryImpl(
         videosDao.getAllVideo().map {
             databaseMappers.toVideoModel(it)
         }
+
+    override fun getVideosUrl(videoList: List<VideoModel>): List<String> {
+        val videosUrlArray: ArrayList<String> = ArrayList()
+        videoList.forEach {
+            videosUrlArray.add(it.videoUrl)
+        }
+        return videosUrlArray
+    }
 }

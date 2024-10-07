@@ -3,6 +3,7 @@ package ua.czrblz.nitrix_soft_test_task.di
 import org.koin.dsl.module
 import ua.czrblz.domain.usecase.GetVideosFromDBUseCase
 import ua.czrblz.domain.usecase.GetVideosFromServerUseCase
+import ua.czrblz.domain.usecase.GetVideosUrlUseCase
 import ua.czrblz.domain.usecase.SaveVideosInfoToDBUseCase
 
 val domainModule = module {
@@ -21,6 +22,12 @@ val domainModule = module {
 
     single<SaveVideosInfoToDBUseCase> {
         SaveVideosInfoToDBUseCase(
+            get()
+        )
+    }
+
+    single<GetVideosUrlUseCase> {
+        GetVideosUrlUseCase(
             get()
         )
     }

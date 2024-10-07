@@ -10,16 +10,21 @@ import kotlinx.coroutines.launch
 import ua.czrblz.domain.model.VideoModel
 import ua.czrblz.domain.usecase.GetVideosFromDBUseCase
 import ua.czrblz.domain.usecase.GetVideosFromServerUseCase
+import ua.czrblz.domain.usecase.GetVideosUrlUseCase
 import ua.czrblz.domain.usecase.SaveVideosInfoToDBUseCase
 
 class MainViewModel(
     private val getVideosFromDBUseCase: GetVideosFromDBUseCase,
     private val getVideosFromServerUseCase: GetVideosFromServerUseCase,
-    private val saveVideosInfoToDBUseCase: SaveVideosInfoToDBUseCase
+    private val saveVideosInfoToDBUseCase: SaveVideosInfoToDBUseCase,
+    private val getVideosUrlUseCase: GetVideosUrlUseCase
 ): ViewModel() {
 
     private val _data = MutableStateFlow<List<VideoModel>>(listOf())
     val data: StateFlow<List<VideoModel>> = _data
+
+    private val _urls = MutableStateFlow<List<String>>(listOf())
+    val urls: StateFlow<List<String>> = _urls
 
     private val _errorMessage = MutableStateFlow<String?>(null)
     val errorMessage: StateFlow<String?> = _errorMessage.asStateFlow()
@@ -39,6 +44,7 @@ class MainViewModel(
         viewModelScope.launch {
             getVideosFromDBUseCase().collectLatest {
                 _data.value =  it
+                _urls.value = getVideosUrlUseCase(it)
             }
         }
     }

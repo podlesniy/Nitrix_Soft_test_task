@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Nitrix_Soft_test_task</string>
+    <string name="duration">Duration:</string>
+    <string name="duration_second">%ss</string>
 </resources>

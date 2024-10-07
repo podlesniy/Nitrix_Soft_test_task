@@ -10,6 +10,7 @@ val appModule = module {
         MainViewModel(
             get(),
             get(),
+            get(),
             get()
         )
     }
