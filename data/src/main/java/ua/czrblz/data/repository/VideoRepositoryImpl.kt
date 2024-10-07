@@ -12,8 +12,8 @@ class VideoRepositoryImpl(
     private val videoMappers: VideoMappers
 ): VideoRepository {
 
-    override suspend fun getVideo(page: Int): Result<List<VideoModel>> = Result.fromAsyncResponse {
-        apiService.getVideos(page = page)
+    override suspend fun getVideo(): Result<List<VideoModel>> = Result.fromAsyncResponse {
+        apiService.getVideos()
     }.map { response ->
         videoMappers.toVideoModel(response.hits)
     }

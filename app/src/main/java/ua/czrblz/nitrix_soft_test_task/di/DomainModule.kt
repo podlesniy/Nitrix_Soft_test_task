@@ -8,7 +8,9 @@ import ua.czrblz.domain.usecase.SaveVideosInfoToDBUseCase
 val domainModule = module {
 
     single<GetVideosFromDBUseCase> {
-        GetVideosFromDBUseCase()
+        GetVideosFromDBUseCase(
+            get()
+        )
     }
 
     single<GetVideosFromServerUseCase> {

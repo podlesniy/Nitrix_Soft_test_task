@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import org.koin.dsl.module
 import ua.czrblz.data.api.ApiService
+import ua.czrblz.data.db.VideosDao
 import ua.czrblz.data.db.VideosDatabase
 import ua.czrblz.data.mappers.DatabaseMappers
 import ua.czrblz.data.mappers.VideoMappers
@@ -25,6 +26,10 @@ val dataModule = module {
         DatabaseRepositoryImpl(
             get(), get()
         )
+    }
+
+    single<VideosDao> {
+        get<VideosDatabase>().moviesDao()
     }
 
     single<VideosDatabase> {
