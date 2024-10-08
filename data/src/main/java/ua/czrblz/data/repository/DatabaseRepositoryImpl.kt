@@ -21,11 +21,5 @@ class DatabaseRepositoryImpl(
             databaseMappers.toVideoModel(it)
         }
 
-    override fun getVideosUrl(videoList: List<VideoModel>): List<String> {
-        val videosUrlArray: ArrayList<String> = ArrayList()
-        videoList.forEach {
-            videosUrlArray.add(it.videoUrl)
-        }
-        return videosUrlArray
-    }
+    override fun getVideosUrl(videoList: List<VideoModel>): List<String> = videoList.map { it.videoUrl }
 }
